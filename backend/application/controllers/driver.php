@@ -12,7 +12,7 @@ class driver extends CI_Controller
       }
       $this->load->model('driver_model');
     }
-    
+
     public function index(){
           $data['content_view']="driver/list";
           $this->load->model('driver_model');
@@ -26,7 +26,7 @@ class driver extends CI_Controller
 
     $this->load->model('driver_model');
     $this->driver_model->hapus_user($id_user);
-    redirect(base_url('index.php/user'), 'refresh');
+    redirect(base_url('index.php/driver'), 'refresh');
 
     }
     public function get_detail($id_user){
@@ -44,15 +44,15 @@ class driver extends CI_Controller
 
               				if($this->driver_model->update() == TRUE){
               				$this->session->set_flashdata('pesan', 'Ubah Data user Berhasil!');
-              				redirect('user');
+              				redirect('driver');
 
               			   }else{
               				$this->session->set_flashdata('pesan', 'Ubah Data user Gagal!');
-              				redirect('user');
+              				redirect('driver');
               			  }
               			}else{
               				$this->session->set_flashdata('pesan', validation_errors());
-              				redirect('user');
+              				redirect('driver');
               			  }
 
     }
@@ -72,11 +72,11 @@ class driver extends CI_Controller
           } else{
               $this->session->set_flashdata('pesan', 'gagal');
           }
-          redirect(base_url('index.php/user'), 'refresh');
+          redirect(base_url('index.php/driver'), 'refresh');
       }
       else{
           $this->session->set_flashdata('pesan', validation_errors());
-          redirect(base_url('index.php/user'), 'refresh');
+          redirect(base_url('index.php/driver'), 'refresh');
       }
     }
 

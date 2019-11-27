@@ -29,7 +29,7 @@ class user_model extends CI_Model
         return $this->db->delete('user');
       }
 
-      public function detail($id_user = '')
+      public function detail_user($id_user = '')
       {
         return $this->db->where('id_user', $id_user)->get('user')->row();
       }
@@ -56,7 +56,7 @@ class user_model extends CI_Model
           'alamat' => $this->input->post('alamat'),
             );
 
-        return $this->db->where('id_user', $this->input->post('id_user_lama'))
+        return $this->db->where('id_user', $this->input->post('id_user'))
                         ->update('user', $data);
     }
     //

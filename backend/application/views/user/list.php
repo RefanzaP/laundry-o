@@ -64,7 +64,7 @@
                 foreach($data_level as $d) {
                   echo "<option value='".$d->id_level."'>".$d->nama."</option>";
                 }
-                ?>
+                ?></select>
           <br>
           <input type="submit" name="simpan" value="Simpan" class="btn btn-success">
           <input type="button" value="Cancel" class="btn btn-defaul" data-dismiss="modal">
@@ -92,9 +92,8 @@
       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     </div>
     <div class="modal-body">
-      <form action="<?=base_url('index.php/user/update')?>" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="id_user_lama" id="id_user_lama" >
-      <input type="hidden" name="id_user" id="id_user">
+      <form action="<?php echo base_url() ?>index.php/user/update" method="post" >
+      <input type="hidden" name="id_user" id="id_user" >
       <br>
       Nama
       <input id="nama" type="text" name="nama" class="form-control"  placeholder="nama"><br>
@@ -114,19 +113,15 @@
   </div>
 </div>
 </div>
-<script type="text/javascript">
+<script>
     function tm_detail(id_user){
-      $.ajax({
-        type:"user",
-        url:"<?=base_url()?>index.php/user/get_detail/"+id_user,
-        dataType:"json",
-        success:function(data){
-          $("#nama").val(data.nama);
-          $("#username").val(data.username);
-          $("#telepon").val(data.telepon);
-          $("#alamat").val(data.alamat);
-          $("#id_user_lama").val(data.id_user_lama);
+      $.getJSON("<?=base_url()?>index.php/user/get_detail/"+id_user,
+  function(data){
+    $("#id_user").val(data['id_user']);
+    $("#nama").val(data['nama']);
+    $("#telepon").val(data['telepon']);
+    $("#alamat").val(data['alamat']);
         }
-      })
+      });
     }
   </script>

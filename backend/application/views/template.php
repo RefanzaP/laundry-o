@@ -51,25 +51,24 @@
                           <li class="">
                               <a href="<?php echo base_url();?>index.php/dashboard" aria-expanded="true"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                                 </li>
+
                                 <li>
-                                  <ul>
-                                    <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i><span>Mitra</span></a>
-                                    <li>
-                                <a href="<?php echo base_url();?>index.php/user" aria-expanded="true"><span>List Mitra</span></a>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i><span> Mitra</span></a>
+                                  <ul class="collapse">
+                                <li><a href="<?php echo base_url();?>index.php/user" aria-expanded="true"><span>List Mitra</span></a>
                                   </li>
-                                  <li>
-                              <a href="<?php echo base_url();?>index.php/laundry" aria-expanded="true"><span>Tambah Laundry</span></a>
+                                  <li><a href="<?php echo base_url();?>index.php/laundry" aria-expanded="true"><span>Tambah Mitra</span></a>
+                                    </li>
+                                  </ul>
                                 </li>
-                                </ul>
-                                </li>
-                                <li>
-                                  <ul>
-                                    <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i><span>Driver</span></a>
-                                    <li>
                             <li>
-                                <a href="<?php echo base_url();?>index.php/driver" aria-expanded="true"><i class="ti-pie-chart"></i><span>List Driver</span></a>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span> Driver</span></a>
+                                <ul class="collapse">
+                                  <li>
+                                <a href="<?php echo base_url();?>index.php/driver" aria-expanded="true"><span>List Driver</span></a>
+                              </li>
+                              </ul>
                             </li>
-                          </li>
                             <!-- <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>List Mitra</span></a>
                                 <ul class="collapse">
