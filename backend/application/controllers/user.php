@@ -24,9 +24,8 @@ class user extends CI_Controller {
 
     }
 
-    public function get_detail($id_user='')
+    public function get_detail($id_user)
     {
-        $this->load->model('user_model');
         $data_detail=$this->user_model->detail_user($id_user);
         echo json_encode($data_detail);
     }

@@ -10,9 +10,8 @@
           <thead class="text-uppercase bg-primary">
             <tr class="text-white">
               <th scope="col">No</th>
-              <th scope="col">Nama</th>
-              <th scope="col">Username</th>
-              <th scope="col">Telepon</th>
+              <th scope="col">Laundry</th>
+              <th scope="col">Nama Pemilik</th>
               <th scope="col">Alamat</th>
               <th scope="col">Aksi</th>
             </tr>
@@ -22,9 +21,8 @@
         $no++; ?>
         <tr>
           <td><?= $no ?></td>
-          <td><?= $dt_bar->nama ?></td>
-          <td><?= $dt_bar->username ?></td>
-          <td><?= $dt_bar->telepon?></td>
+          <td><?= $dt_bar->nama_laundry ?></td>
+          <td><?= $dt_bar->id_user ?></td>
           <td><?= $dt_bar->alamat?></td>
           <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_user ?>')" data-toggle="modal">Ubah</a> | <a href="<?=base_url('index.php/user/hapus_user/'.$dt_bar->id_user)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
         </tr>
