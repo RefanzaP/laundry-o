@@ -55,9 +55,9 @@
                                 <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i><span> Mitra</span></a>
                                   <ul class="collapse">
-                                <li><a href="<?php echo base_url();?>index.php/user" aria-expanded="true"><span>List Mitra</span></a>
+                                <li><a href="<?php echo base_url();?>index.php/user" aria-expanded="true"><span>List Pemilik</span></a>
                                   </li>
-                                  <li><a href="<?php echo base_url();?>index.php/laundry" aria-expanded="true"><span>Tambah Mitra</span></a>
+                                  <li><a href="<?php echo base_url();?>index.php/laundry" aria-expanded="true"><span>List Mitra</span></a>
                                     </li>
                                   </ul>
                                 </li>

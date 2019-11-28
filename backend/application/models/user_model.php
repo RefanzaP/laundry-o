@@ -23,7 +23,7 @@ class user_model extends CI_Model
                       ->result();
       }
 
-      public function hapus_user($id_user)
+      public function hapus_user($id_user = '')
       {
         $this->db->where('id_user', $id_user);
         return $this->db->delete('user');

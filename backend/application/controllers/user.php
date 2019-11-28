@@ -24,13 +24,6 @@ class user extends CI_Controller {
 
     }
 
-    public function get_detail($id_user)
-    {
-        $data_detail=$this->user_model->detail_user($id_user);
-        echo json_encode($data_detail);
-    }
-
-
     public function hapus_user($id)
   {
     $this->load->model('user_model');
@@ -60,6 +53,7 @@ class user extends CI_Controller {
             redirect(base_url('index.php/user'), 'refresh');
         }
     }
+
     public function update()
     {
 
@@ -83,6 +77,14 @@ class user extends CI_Controller {
         redirect(base_url('index.php/user'), 'refresh');
       }
     }
+
+
+    public function get_detail($id_user = '')
+      {
+        $this->load->model('user_model');
+        $data_detail=$this->user_model->detail_user($id_user);
+        echo json_encode($data_detail);
+      }
 
     // public function json_topik_post_by_id(){
     //        $id = $this->uri->segment(3);

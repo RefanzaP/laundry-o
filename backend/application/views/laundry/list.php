@@ -5,7 +5,7 @@
     <div class="col-lg-10 mt-5">
       <div class="table-responsive">
         <table class="table text-center">
-            <h4 class="header-title">List Mitra</h4>
+            <h4 class="header-title">List Laundry</h4>
                     <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
           <thead class="text-uppercase bg-primary">
             <tr class="text-white">
@@ -22,9 +22,10 @@
         <tr>
           <td><?= $no ?></td>
           <td><?= $dt_bar->nama_laundry ?></td>
-          <td><?= $dt_bar->id_user ?></td>
+          <td><?= $dt_bar->nama ?></td>
           <td><?= $dt_bar->alamat?></td>
-          <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_user ?>')" data-toggle="modal">Ubah</a> | <a href="<?=base_url('index.php/user/hapus_user/'.$dt_bar->id_user)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
+          <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_laundry ?>')" data-toggle="modal">Ubah</a> |
+             <a href="<?=base_url('index.php/laundry/hapus_laundry/'.$dt_bar->id_laundry)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
         </tr>
       <?php endforeach ?>
           </tbody>
@@ -44,26 +45,18 @@
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         </div>
         <div class="modal-body">
-          <form action="<?php echo base_url() ?>index.php/user/add" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="id_user" ><br>
-          Nama
-          <input id="nama" type="text" name="nama" class="form-control"  placeholder="nama"><br>
-          Username
-          <input id="username" type="text" name="username" class="form-control" placeholder="username"><br>
-          Password
-          <input id="password" type="text" name="password" class="form-control" placeholder="password"><br>
-          Telepon
-          <input id="telepon" type="text" name="telepon" class="form-control" placeholder="telepon"><br>
-          Alamat
-          <input id="alamat" type="text" name="alamat" class="form-control" placeholder="alamat"><br>
-          Pilih level <br>
-              <select name="id_level" class="form-control" >
-                <?php
-                foreach($data_level as $d) {
-                  echo "<option value='".$d->id_level."'>".$d->nama."</option>";
-                }
-                ?></select>
-          <br>
+          <form action="<?php echo base_url() ?>index.php/laundry/add" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id_laundry" ><br>
+          Nama Laundry
+          <input id="nama_laundry" type="text" name="nama_laundry" class="form-control" placeholder="Nama Laundry"><br>
+          Pilih Pemilik
+          <select name="id_user" class="form-control">
+              <?php
+              foreach($data_user as $d) {
+                echo "<option value='".$d->id_user."'>".$d->nama."</option>";
+              }
+              ?>
+            </select><br>
           <input type="submit" name="simpan" value="Simpan" class="btn btn-success">
           <input type="button" value="Cancel" class="btn btn-defaul" data-dismiss="modal">
           </form>
@@ -90,18 +83,11 @@
       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     </div>
     <div class="modal-body">
-      <form action="<?php echo base_url() ?>index.php/user/update" method="post" >
-      <input type="hidden" name="id_user" id="id_user" >
+      <form action="<?php echo base_url() ?>index.php/laundry/update" method="post" >
+      <input type="hidden" name="id_laundry" id="id_laundry" >
       <br>
-      Nama
-      <input id="nama" type="text" name="nama" class="form-control"  placeholder="nama"><br>
-      Username
-      <input id="username" type="text" name="username" class="form-control" placeholder="username"><br>
-      Telepon
-      <input id="telepon" type="text" name="telepon" class="form-control" placeholder="telepon"><br>
-      Alamat
-      <input id="alamat" type="text" name="alamat" class="form-control" placeholder="alamat"><br>
-    <br>
+      Nama Laundry
+      <input id="nama_laundry" type="text" name="nama_laundry" class="form-control"  placeholder="Nama Laundry"><br><br>
       <input type="submit" name="simpan" value="Simpan" class="btn btn-success">
       </form>
     </div>
@@ -113,11 +99,10 @@
 </div>
 <script>
     function tm_detail(id_user){
-      $.getJSON("<?=base_url()?>index.php/user/get_detail/"+id_user,
+      $.getJSON("<?=base_url()?>index.php/laundry/get_detail/"+id_laundry,
   function(data){
-    $("#nama").val(data['nama']);
-    $("#telepon").val(data['telepon']);
-    $("#alamat").val(data['alamat']);
+    $("#id_laundry").val(data['id_laundry']);
+    $("#nama_laundry").val(data['nama_laundry']);
         }
       });
     }

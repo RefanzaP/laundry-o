@@ -5,7 +5,7 @@
     <div class="col-lg-10 mt-5">
       <div class="table-responsive">
         <table class="table text-center">
-            <h4 class="header-title">List Mitra</h4>
+            <h4 class="header-title">List Owner</h4>
                     <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
           <thead class="text-uppercase bg-primary">
             <tr class="text-white">
@@ -113,10 +113,10 @@
   </div>
 </div>
 </div>
-<script>
+<script type="text/javascript">
     function tm_detail(id_user){
-      $.getJSON("<?=base_url()?>index.php/user/get_detail/"+id_user,
-  function(data){
+    $.getJSON("<?=base_url()?>index.php/user/get_detail/"+id_user,function(data){
+    $("#id_user").val(data['id_user']);
     $("#nama").val(data['nama']);
     $("#telepon").val(data['telepon']);
     $("#alamat").val(data['alamat']);

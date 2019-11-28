@@ -19,8 +19,40 @@ class laundry extends CI_Controller
     $this->load->model('laundry_model');
     $data['arr']=$this->laundry_model->get_laundry();
     $this->load->model('level_model');
-    $data['data_level']=$this->level_model->show_owner();
+    $data['data_user']=$this->laundry_model->show_owner();
     $this->load->view('template', $data, FALSE);
+  }
+
+  public function hapus_laundry($id)
+{
+  $this->load->model('laundry_model');
+  $this->laundry_model->hapus_laundry($id);
+  redirect(base_url('index.php/laundry'), 'refresh');
+}
+
+  public function add(){
+    $this->form_validation->set_rules('nama_laundry', 'Nama Laundry', 'trim|required');
+    $this->form_validation->set_rules('id_user', 'Owner', 'trim|required');
+
+      if ($this->form_validation->run() == TRUE )
+      {
+          $this->load->model('laundry_model', 'bar');
+          $masuk=$this->bar->add();
+          if($masuk==TRUE){
+              $this->session->set_flashdata('pesan', 'sukses');
+          } else{
+              $this->session->set_flashdata('pesan', 'gagal');
+          }
+          redirect(base_url('index.php/laundry'), 'refresh');
+      }
+      else{
+          $this->session->set_flashdata('pesan', validation_errors());
+          redirect(base_url('index.php/laundry'), 'refresh');
+      }
+  }
+
+  public function get_detail(){
+    
   }
 
 }
