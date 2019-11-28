@@ -113,7 +113,7 @@
                                           </li>
 
                                       <li >
-                                          <a href="<?php echo base_url();?>index.php/order" aria-expanded="true"><i class="fa fa-table"></i><span>List pakaian</span></a>
+                                          <a href="<?php echo base_url();?>index.php/pakaian" aria-expanded="true"><i class="fa fa-table"></i><span>List pakaian</span></a>
                                             </li>
                                       <li>
                                         <li>

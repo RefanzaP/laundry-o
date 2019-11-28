@@ -36,6 +36,7 @@ public function ambil_data($limit,$start){
       $data_topik=array(
           'nama' => $this->input->post('nama'),
           'username' => $this->input->post('username'),
+          'password' => $this->input->post('password'),
           'telepon' => $this->input->post('telepon'),
           'alamat' => $this->input->post('alamat'),
           'id_level'=>$this->input->post('id_level'),

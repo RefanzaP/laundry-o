@@ -35,6 +35,7 @@ class user extends CI_Controller {
     {
       $this->form_validation->set_rules('nama', 'nama', 'trim|required');
             $this->form_validation->set_rules('username', 'username', 'trim|required');
+            $this->form_validation->set_rules('password', 'password', 'trim|required');
             $this->form_validation->set_rules('telepon', 'telepon', 'trim|required');
                   $this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
         if ($this->form_validation->run() == TRUE )
