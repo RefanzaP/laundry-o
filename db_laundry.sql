@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2019 at 03:13 PM
+-- Generation Time: Nov 29, 2019 at 03:18 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -173,6 +173,16 @@ CREATE TABLE `status` (
   `id_status` int(11) NOT NULL,
   `status_pesan` enum('Dikerjakan','Diterima','Diantar','Pending') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`id_status`, `status_pesan`) VALUES
+(1, 'Dikerjakan'),
+(2, 'Diterima'),
+(3, 'Diantar'),
+(4, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -353,7 +363,7 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
-  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
