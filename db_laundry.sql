@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 02:13 PM
+-- Generation Time: Nov 29, 2019 at 03:13 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -55,33 +55,13 @@ CREATE TABLE `detail_transaksi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `driver`
---
-
-CREATE TABLE `driver` (
-  `id_driver` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `id_level` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `driver`
---
-
-INSERT INTO `driver` (`id_driver`, `username`, `password`, `id_level`) VALUES
-(1, 'ojek ', 'ojek', 2);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `jenis_paket`
 --
 
 CREATE TABLE `jenis_paket` (
   `id_jenis_paket` int(11) NOT NULL,
   `nama_paket` varchar(255) NOT NULL,
-  `harga` float NOT NULL
+  `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -89,10 +69,10 @@ CREATE TABLE `jenis_paket` (
 --
 
 INSERT INTO `jenis_paket` (`id_jenis_paket`, `nama_paket`, `harga`) VALUES
-(1, 'reguler', 0),
 (2, 'express', 1500),
 (3, 'kilat', 2000),
-(4, '5jam', 3000);
+(4, '5jam', 3000),
+(5, 'Reguler', 0);
 
 -- --------------------------------------------------------
 
@@ -112,7 +92,7 @@ CREATE TABLE `laundry` (
 --
 
 INSERT INTO `laundry` (`id_laundry`, `nama_laundry`, `id_user`, `alamat`) VALUES
-(2, 'bakrie laundry', 7, 'Jl danau pak yan');
+(3, 'Jokdri Style Laundry', 9, '');
 
 -- --------------------------------------------------------
 
@@ -155,21 +135,44 @@ CREATE TABLE `nota` (
 
 CREATE TABLE `pakaian` (
   `id_pakaian` int(11) NOT NULL,
+  `id_jenis_paket` int(11) NOT NULL,
   `jenis_pakaian` varchar(255) NOT NULL,
-  `harga` float NOT NULL,
+  `harga_pakaian` bigint(20) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `pakaian`
+-- Table structure for table `pelanggan`
 --
 
-INSERT INTO `pakaian` (`id_pakaian`, `jenis_pakaian`, `harga`, `gambar`, `keterangan`) VALUES
-(1, 'kaos oblong', 5000, '', 'putih'),
-(2, 'kaos oblong', 4500, '', 'warna cerah'),
-(3, 'kemeja', 5000, '', 'putih'),
-(4, 'kemeja', 4500, '', 'cerah');
+CREATE TABLE `pelanggan` (
+  `id_pelanggan` int(11) NOT NULL,
+  `nama_user` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `alamat` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama_user`, `username`, `password`, `alamat`) VALUES
+(3, 'test', 'test', 'test', 'Jl. Test');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE `status` (
+  `id_status` int(11) NOT NULL,
+  `status_pesan` enum('Dikerjakan','Diterima','Diantar','Pending') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -180,7 +183,8 @@ INSERT INTO `pakaian` (`id_pakaian`, `jenis_pakaian`, `harga`, `gambar`, `ketera
 CREATE TABLE `transaksi` (
   `id_transaksi` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_driver` int(11) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL,
   `total_bayar` float NOT NULL,
   `status_pesan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -208,7 +212,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `telepon`, `alamat`, `id_level`) VALUES
 (4, 'ojek', 'ojek', 'ojek', 871821, 'Jl.jl', 2),
 (6, 'admin', 'admin', 'admin', 1234567, 'terserah', 1),
-(7, 'fikri', 'fikri', 'fikri', 1234567, 'JL. Mesotopania', 3);
+(9, 'Jokdri', 'jokdri', 'jokdri', 8123123, 'Jl. Gejayan', 3);
 
 --
 -- Indexes for dumped tables
@@ -230,13 +234,6 @@ ALTER TABLE `detail_transaksi`
   ADD KEY `id_transaksi` (`id_transaksi`),
   ADD KEY `id_laundry` (`id_laundry`),
   ADD KEY `id_jenis_paket` (`id_jenis_paket`);
-
---
--- Indexes for table `driver`
---
-ALTER TABLE `driver`
-  ADD PRIMARY KEY (`id_driver`),
-  ADD KEY `id_level` (`id_level`);
 
 --
 -- Indexes for table `jenis_paket`
@@ -268,7 +265,20 @@ ALTER TABLE `nota`
 -- Indexes for table `pakaian`
 --
 ALTER TABLE `pakaian`
-  ADD PRIMARY KEY (`id_pakaian`);
+  ADD PRIMARY KEY (`id_pakaian`),
+  ADD KEY `id_jenis_paket` (`id_jenis_paket`);
+
+--
+-- Indexes for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD PRIMARY KEY (`id_pelanggan`);
+
+--
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id_status`);
 
 --
 -- Indexes for table `transaksi`
@@ -276,7 +286,9 @@ ALTER TABLE `pakaian`
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
   ADD UNIQUE KEY `id_user` (`id_user`),
-  ADD KEY `id_driver` (`id_driver`);
+  ADD KEY `id_driver` (`id_pelanggan`),
+  ADD KEY `id_user_2` (`id_user`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `user`
@@ -302,22 +314,16 @@ ALTER TABLE `detail_transaksi`
   MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `driver`
---
-ALTER TABLE `driver`
-  MODIFY `id_driver` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `jenis_paket`
 --
 ALTER TABLE `jenis_paket`
-  MODIFY `id_jenis_paket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_jenis_paket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `laundry`
 --
 ALTER TABLE `laundry`
-  MODIFY `id_laundry` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_laundry` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `level`
@@ -335,7 +341,19 @@ ALTER TABLE `nota`
 -- AUTO_INCREMENT for table `pakaian`
 --
 ALTER TABLE `pakaian`
-  MODIFY `id_pakaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pakaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
@@ -347,7 +365,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -369,12 +387,6 @@ ALTER TABLE `detail_transaksi`
   ADD CONSTRAINT `detail_transaksi_ibfk_4` FOREIGN KEY (`id_jenis_paket`) REFERENCES `jenis_paket` (`id_jenis_paket`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `driver`
---
-ALTER TABLE `driver`
-  ADD CONSTRAINT `driver_ibfk_1` FOREIGN KEY (`id_level`) REFERENCES `level` (`id_level`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `laundry`
 --
 ALTER TABLE `laundry`
@@ -387,11 +399,18 @@ ALTER TABLE `nota`
   ADD CONSTRAINT `nota_ibfk_1` FOREIGN KEY (`id_detail`) REFERENCES `detail_transaksi` (`id_detail`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `pakaian`
+--
+ALTER TABLE `pakaian`
+  ADD CONSTRAINT `pakaian_ibfk_1` FOREIGN KEY (`id_jenis_paket`) REFERENCES `jenis_paket` (`id_jenis_paket`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_driver`) REFERENCES `driver` (`id_driver`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaksi_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaksi_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaksi_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `status` (`id_status`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`

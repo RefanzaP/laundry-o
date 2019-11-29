@@ -6,13 +6,13 @@
     <div class="col-lg-10 mt-5">
       <div class="table-responsive">
         <table class="table text-center">
-            <h4 class="header-title">List Paket Harga</h4>
-              <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
-          <thead class="text-uppercase bg-warning">
+            <h4 class="header-title">List Orderan</h4>
+          <thead class="text-uppercase bg-secondary">
             <tr class="text-white">
               <th scope="col">No</th>
-              <th scope="col">Nama Paket</th>
-              <th scope="col">Harga</th>
+              <th scope="col">Pemesanan Nomor</th>
+              <th scope="col">Nama Pelanggan</th>
+              <th scope="col">Driver</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -20,11 +20,12 @@
             <?php $no=0; foreach($arr as $dt_bar):
         $no++; ?>
         <tr>
-          <td><?= $no ?></td>
-          <td><?= $dt_bar->nama_paket ?></td>
-          <td><?= $dt_bar->harga?></td>
-          <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_jenis_paket ?>')" data-toggle="modal">Ubah</a> |
-             <a href="<?=base_url('index.php/jenis_paket/hapus_jenis_paket/'.$dt_bar->id_jenis_paket)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
+          <td><?= $dt_bar->id_transaksi ?></td>
+          <td><?= $dt_bar->nama_user?></td>
+          <td><?= $dt_bar->nama?></td>
+          <td><?= $dt_bar->total_bayar?></td>
+          <td><?= $dt_bar->status_pesan?></td>
+             <a href="<?=base_url('index.php/jenis_paket/hapus_jenis_paket/'.$dt_bar->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
         </tr>
       <?php endforeach ?>
           </tbody>

@@ -29,9 +29,10 @@ class user_model extends CI_Model
         return $this->db->delete('user');
       }
 
-      public function detail_user($id_user)
+      public function detail_user($id_user = NULL)
       {
-        return $this->db->where('id_user', $id_user)->get('user')->row();
+        $query = $this->db->where('id_user', $id_user)->get('user')->row();
+        return $query;
       }
 
       public function add(){
@@ -50,15 +51,15 @@ class user_model extends CI_Model
 
       public function update()
       {
-        $data = array(
+        $dt_up_admin = array(
           'nama' => $this->input->post('nama'),
           'username' => $this->input->post('username'),
           'telepon' => $this->input->post('telepon'),
           'alamat' => $this->input->post('alamat'),
             );
 
-        return $this->db->where('id_user', $this->input->post('id_user'))
-                        ->update('user', $data);
+            return $this->db->where('id_user', $this->input->post('id_user_lama'))
+                            ->update('user', $data);
     }
     //
     // public function update_dengan_foto($file_cover)

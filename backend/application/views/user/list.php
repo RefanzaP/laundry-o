@@ -26,7 +26,7 @@
           <td><?= $dt_bar->username ?></td>
           <td><?= $dt_bar->telepon?></td>
           <td><?= $dt_bar->alamat?></td>
-          <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_user ?>')" data-toggle="modal">Ubah</a> | <a href="<?=base_url('index.php/user/hapus_user/'.$dt_bar->id_user)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
+          <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_user?>')" data-toggle="modal">Ubah</a> | <a href="<?=base_url('index.php/user/hapus_user/'.$dt_bar->id_user)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
         </tr>
       <?php endforeach ?>
           </tbody>
@@ -92,8 +92,8 @@
       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     </div>
     <div class="modal-body">
-      <form action="<?php echo base_url() ?>index.php/user/update" method="post" >
-      <input type="hidden" name="id_user" id="id_user" >
+      <form action="<?=base_url()?>index.php/user/update" method="post" enctype="multipart/form-data" >
+      <input type="hidden" name="id_user_lama" id="id_user_lama" >
       <br>
       Nama
       <input id="nama" type="text" name="nama" class="form-control"  placeholder="nama"><br>
@@ -115,11 +115,16 @@
 </div>
 <script type="text/javascript">
     function tm_detail(id_user){
-    $.getJSON("<?=base_url()?>index.php/user/get_detail/"+id_user,function(data){
-    $("#id_user").val(data['id_user']);
-    $("#nama").val(data['nama']);
-    $("#telepon").val(data['telepon']);
-    $("#alamat").val(data['alamat']);
+      $.ajax({
+            type:"post",
+            url:"<?=base_url()?>index.php/post/get_detail/"+id_user,
+            dataType:"json",
+            success:function(data){
+              $("#nama").val(data.nama);
+              $("#username").val(data.username);
+              $("#telepon").val(data.telepon);
+              $("#alamat").val(data.alamat);
+              $("#id_user_lama").val(data.id_user_lama);
         }
       });
     }
