@@ -11,6 +11,11 @@ class order_model extends CI_Model
                     ->result();
     return $arr;
   }
+  public function hapus_order($id_transaksi = '')
+  {
+    $this->db->where('id_transaksi', $id_transaksi);
+    return $this->db->delete('transaksi');
+  }
 }
 
 

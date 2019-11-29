@@ -13,6 +13,7 @@
               <th scope="col">Pemesanan Nomor</th>
               <th scope="col">Nama Pelanggan</th>
               <th scope="col">Driver</th>
+              <th scope="col">Status</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -25,7 +26,7 @@
           <td><?= $dt_bar->nama?></td>
           <td><?= $dt_bar->total_bayar?></td>
           <td><?= $dt_bar->status_pesan?></td>
-             <a href="<?=base_url('index.php/jenis_paket/hapus_jenis_paket/'.$dt_bar->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
+             <td><a href="<?=base_url('index.php/order/hapus_order/'.$dt_bar->id_transaksi)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
         </tr>
       <?php endforeach ?>
           </tbody>

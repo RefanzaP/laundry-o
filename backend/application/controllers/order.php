@@ -19,7 +19,12 @@ class order extends CI_Controller
     $data['arr']=$this->order_model->get_order();
     $this->load->view('template', $data, FALSE);
   }
-
+  public function hapus_order($id_transaksi)
+{
+  $this->load->model('order_model');
+  $this->order_model->hapus_order($id_transaksi);
+  redirect(base_url('index.php/order'), 'refresh');
+}
 }
 
 
