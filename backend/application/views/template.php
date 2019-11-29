@@ -93,7 +93,7 @@
                                 </li>
                                 <!-- <li> -->
                                 <li>
-                                    <a href="<?php echo base_url();?>index.php/driver" aria-expanded="true"><i class="ti-receipt"></i><span>Cetak Nota</span></a> -->
+                                    <a href="<?php echo base_url();?>index.php/cetak_nota" aria-expanded="true"><i class="ti-receipt"></i><span>Cetak Nota</span></a> -->
                                 </li>
                               <?php } else if($this->session->userdata('id_level') == 2) {?>
                                 <li class="">
@@ -111,13 +111,20 @@
                                     <li class="">
                                         <a href="<?php echo base_url();?>index.php/dashboard" aria-expanded="true"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                                           </li>
-
-                                      <li >
-                                          <a href="<?php echo base_url();?>index.php/pakaian" aria-expanded="true"><i class="fa fa-table"></i><span>List pakaian</span></a>
+                                          <li>
+                                            <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i><span>Daftar Harga</span></a>
+                                              <ul class="collapse">
+                                                <li >
+                                                  <a href="<?php echo base_url();?>index.php/jenis_paket" aria-expanded="true"><span>Daftar Harga Paket</span></a>
+                                                </li>
+                                            <li >
+                                          <a href="<?php echo base_url();?>index.php/pakaian" aria-expanded="true"><span>Daftar Harga Pakaian</span></a>
+                                            </li>
+                                          </ul>
                                             </li>
                                       <li>
                                         <li>
-                                            <a href="<?php echo base_url();?>index.php/driver" aria-expanded="true"><i class="ti-receipt"></i><span>Cetak Nota</span></a>
+                                            <a href="<?php echo base_url();?>index.php/cetak_nota" aria-expanded="true"><i class="ti-receipt"></i><span>Cetak Nota</span></a>
                                         </li>
 
                                 <?php } ?>
