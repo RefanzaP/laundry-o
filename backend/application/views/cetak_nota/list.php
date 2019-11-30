@@ -5,20 +5,25 @@
     <div class="col-lg-10 mt-5">
       <div class="table-responsive">
         <table class="table text-center">
-            <h4 class="header-title">Data Driver</h4>
+            <h4 class="header-title">Data Transaksi</h4>
                     <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
           <thead class="text-uppercase bg-success">
             <tr class="text-white">
               <th scope="col">No</th>
               <th scope="col">Nama</th>
-              <th scope="col">Username</th>
-              <th scope="col">Telepon</th>
-              <th scope="col">Alamat</th>
-              <th scope="col">Aksi</th>
+              <th scope="col">Pakaian</th>
+              <th scope="col">Transaksi</th>
+              <th scope="col">Tempat Laundry</th>
+              <th scope="col">Jenis Paket</th>
+              <th scope="col">Status detail</th>
+              <th scope="col">Banyak Laundry</th>
+              <th scope="col">Tanggal</th>
+              <th scope="col">Cetak</th>
             </tr>
           </thead>
           <tbody>
-            <?php $no=0; foreach($arr as $dt_bar):
+            <?php $no=0;
+            foreach($arr as $dt_bar):
         $no++; ?>
         <tr>
           <td><?= $no ?></td>
@@ -116,18 +121,4 @@
      <div class= "alert alert-success"><?= $this->session->flashdata('pesan');?></div>
   <?php endif?>
 <script type="text/javascript">
-    function tm_detail(id_user){
-      $.ajax({
-        type:"user",
-        url:"<?=base_url()?>index.php/user/get_detail/"+id_user,
-        dataType:"json",
-        success:function(data){
-          $("#nama").val(data.nama);
-          $("#username").val(data.username);
-          $("#telepon").val(data.telepon);
-          $("#alamat").val(data.alamat);
-          $("#id_user_lama").val(data.id_user);
-        }
-      })
-    }
   </script>

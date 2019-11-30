@@ -55,9 +55,9 @@
                                 <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i><span> Mitra</span></a>
                                   <ul class="collapse">
-                                <li><a href="<?php echo base_url();?>index.php/user" aria-expanded="true"><span>List Pemilik</span></a>
+                                <li><a href="<?php echo base_url();?>index.php/user" aria-expanded="true"><span>Data Pemilik</span></a>
                                   </li>
-                                  <li><a href="<?php echo base_url();?>index.php/laundry" aria-expanded="true"><span>List Mitra</span></a>
+                                  <li><a href="<?php echo base_url();?>index.php/laundry" aria-expanded="true"><span>Data Mitra</span></a>
                                     </li>
                                   </ul>
                                 </li>
@@ -65,12 +65,14 @@
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span> Driver</span></a>
                                 <ul class="collapse">
                                   <li>
-                                <a href="<?php echo base_url();?>index.php/driver" aria-expanded="true"><span>List Driver</span></a>
+                                <a href="<?php echo base_url();?>index.php/driver" aria-expanded="true"><span>Data Driver</span></a>
                               </li>
                               </ul>
                             </li>
+                            <li><a href="<?php echo base_url();?>index.php/pelanggan" aria-expanded="true"><i class="fa fa-user"></i><span>Data Pelanggan</span></a>
+                        </li>
                             <!-- <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>List Mitra</span></a>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>Data Mitra</span></a>
                                 <ul class="collapse">
                                     <li><a href="accordion.html">Accordion</a></li>
                                     <li><a href="alert.html">Alert</a></li>
@@ -79,7 +81,7 @@
                                     <li><a href="button-group.html">Button Group</a></li>
                                     <li><a href="cards.html">Cards</a></li>
                                     <li><a href="dropdown.html">Dropdown</a></li>
-                                    <li><a href="list-group.html">List Group</a></li>
+                                    <li><a href="Data-group.html">Data Group</a></li>
                                     <li><a href="media-object.html">Media Object</a></li>
                                     <li><a href="modal.html">Modal</a></li>
                                     <li><a href="pagination.html">Pagination</a></li>
@@ -225,7 +227,7 @@
                               </i>
                               <div class="dropdown-menu bell-notify-box notify-box">
                                   <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
-                                  <div class="nofity-list">
+                                  <div class="nofity-Data">
                                       <a href="#" class="notify-item">
                                           <div class="notify-thumb"><i class="ti-key btn-danger"></i></div>
                                           <div class="notify-text">
@@ -282,7 +284,7 @@
                               <i class="fa fa-envelope-o dropdown-toggle" data-toggle="dropdown"><span>3</span></i>
                               <div class="dropdown-menu notify-box nt-enveloper-box">
                                   <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
-                                  <div class="nofity-list">
+                                  <div class="nofity-Data">
                                       <a href="#" class="notify-item">
                                           <div class="notify-thumb">
                                               <img src="assets/images/author/author-img1.jpg" alt="image">
@@ -467,7 +469,7 @@
             <div id="settings" class="tab-pane fade">
                 <div class="offset-settings">
                     <h4>General Settings</h4>
-                    <div class="settings-list">
+                    <div class="settings-Data">
                         <div class="s-settings">
                             <div class="s-sw-title">
                                 <h5>Notifications</h5>

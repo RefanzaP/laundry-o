@@ -5,7 +5,7 @@
     <div class="col-lg-10 mt-5">
       <div class="table-responsive">
         <table class="table text-center">
-            <h4 class="header-title">List Owner</h4>
+            <h4 class="header-title">Data Mitra</h4>
                     <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
           <thead class="text-uppercase bg-primary">
             <tr class="text-white">
@@ -26,7 +26,7 @@
           <td><?= $dt_bar->username ?></td>
           <td><?= $dt_bar->telepon?></td>
           <td><?= $dt_bar->alamat?></td>
-          <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_user?>')" data-toggle="modal">Ubah</a> | <a href="<?=base_url('index.php/user/hapus_user/'.$dt_bar->id_user)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
+          <td> <a href="#update" onclick="tm_detail('.$dt_bar->id_user.')" data-toggle="modal">Ubah</a> | <a href="<?=base_url('index.php/user/hapus_user/'.$dt_bar->id_user)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
         </tr>
       <?php endforeach ?>
           </tbody>
@@ -93,16 +93,16 @@
     </div>
     <div class="modal-body">
       <form action="<?=base_url()?>index.php/user/update" method="post" enctype="multipart/form-data" >
-      <input type="hidden" name="id_user_lama" id="id_user_lama" >
+      <input type="hidden" name="id_user" id="id_user" >
       <br>
       Nama
-      <input id="nama" type="text" name="nama" class="form-control"  placeholder="nama"><br>
+      <input id="nama" type="text" name="nama" class="form-control"><br>
       Username
-      <input id="username" type="text" name="username" class="form-control" placeholder="username"><br>
+      <input id="username" type="text" name="username" class="form-control"><br>
       Telepon
-      <input id="telepon" type="text" name="telepon" class="form-control" placeholder="telepon"><br>
+      <input id="telepon" type="number" name="telepon" class="form-control"><br>
       Alamat
-      <input id="alamat" type="text" name="alamat" class="form-control" placeholder="alamat"><br>
+      <input id="alamat" type="text" name="alamat" class="form-control"><br>
     <br>
       <input type="submit" name="simpan" value="Simpan" class="btn btn-success">
       </form>
@@ -115,16 +115,12 @@
 </div>
 <script type="text/javascript">
     function tm_detail(id_user){
-      $.ajax({
-            type:"post",
-            url:"<?=base_url()?>index.php/post/get_detail/"+id_user,
-            dataType:"json",
-            success:function(data){
-              $("#nama").val(data.nama);
-              $("#username").val(data.username);
-              $("#telepon").val(data.telepon);
-              $("#alamat").val(data.alamat);
-              $("#id_user_lama").val(data.id_user_lama);
+      $.getJSON("<?=base_url()?>index.php/user/get_detail_user/"+id_user,function(data){
+              $("#nama").val(data['nama']);
+              $("#username").val(data['username']);
+              $("#telepon").val(data['telepon']);
+              $("#alamat").val(data['alamat']);
+              $("#id_user").val(data['id_user']);
         }
       });
     }

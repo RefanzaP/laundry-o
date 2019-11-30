@@ -1,3 +1,4 @@
+
 <div class="card">
   <div class="card-body">
 <div class="main-content-inner">
@@ -5,15 +6,15 @@
     <div class="col-lg-10 mt-5">
       <div class="table-responsive">
         <table class="table text-center">
-            <h4 class="header-title">Data Driver</h4>
-                    <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
-          <thead class="text-uppercase bg-success">
+            <h4 class="header-title">Data Pelanggan</h4>
+            <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
+          <thead class="text-uppercase bg-dark">
             <tr class="text-white">
               <th scope="col">No</th>
-              <th scope="col">Nama</th>
+              <th scope="col">Nama Pelanggan</th>
               <th scope="col">Username</th>
-              <th scope="col">Telepon</th>
               <th scope="col">Alamat</th>
+              <th scope="col">Telepon</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -22,11 +23,12 @@
         $no++; ?>
         <tr>
           <td><?= $no ?></td>
-          <td><?= $dt_bar->nama ?></td>
-          <td><?= $dt_bar->username ?></td>
-          <td><?= $dt_bar->telepon?></td>
+
+          <td><?= $dt_bar->nama_user?></td>
+          <td><?= $dt_bar->username?></td>
           <td><?= $dt_bar->alamat?></td>
-          <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_user ?>')" data-toggle="modal">Ubah</a> | <a href="<?=base_url('index.php/user/hapus_user/'.$dt_bar->id_user)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
+          <td><?= $dt_bar->telepon?></td>
+              <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_pelanggan?>')" data-toggle="modal">Ubah</a> | <a href="<?=base_url('index.php/pelanggan/hapus_user/'.$dt_bar->id_pelanggan)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
         </tr>
       <?php endforeach ?>
           </tbody>
@@ -38,18 +40,19 @@
 </div>
 </div>
 <!-- add user -->
+
 <div class="modal fade" id="tambah">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Tambah Mitra</h4>
+          <h4 class="modal-title" id="myModalLabel">Tambah Data Pelanggan</h4>
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         </div>
         <div class="modal-body">
-          <form action="<?php echo base_url() ?>index.php/user/add" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="id_user" ><br>
+          <form action="<?php echo base_url() ?>index.php/pelanggan/add" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id_pelanggan" ><br>
           Nama
-          <input id="nama" type="text" name="nama" class="form-control"  placeholder="nama"><br>
+          <input id="nama_user" type="text" name="nama_user" class="form-control"  placeholder="nama"><br>
           Username
           <input id="username" type="text" name="username" class="form-control" placeholder="username"><br>
           Password
@@ -58,13 +61,6 @@
           <input id="telepon" type="text" name="telepon" class="form-control" placeholder="telepon"><br>
           Alamat
           <input id="alamat" type="text" name="alamat" class="form-control" placeholder="alamat"><br>
-          Pilih level <br>
-              <select name="id_level" class="form-control" >
-                <?php
-                foreach($data_level as $d) {
-                  echo "<option value='".$d->id_level."'>".$d->nama."</option>";
-                }
-                ?>
           <br>
           <input type="submit" name="simpan" value="Simpan" class="btn btn-success">
           <input type="button" value="Cancel" class="btn btn-defaul" data-dismiss="modal">
@@ -92,17 +88,17 @@
       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     </div>
     <div class="modal-body">
-      <form action="<?=base_url()?>index.php/user/update" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="id_user_lama" id="id_user_lama" ><br>
-      Nama
-      <input id="nama" type="text" name="nama" class="form-control"  placeholder="nama"><br>
-      Username
-      <input id="username" type="text" name="username" class="form-control" placeholder="username"><br>
-      Telepon
-      <input id="telepon" type="text" name="telepon" class="form-control" placeholder="telepon"><br>
-      Alamat
-      <input id="alamat" type="text" name="alamat" class="form-control" placeholder="alamat"><br>
-    <br>
+      <form action="<?php echo base_url() ?>index.php/order/update" method="post" >
+      <input type="hidden" name="id_pakaian" id="id_pakaian" >
+      <br>
+      Pilih Status <br>
+          <select name="id_status" class="form-control" >
+            <?php
+            foreach($data_status as $d) {
+              echo "<option value='".$d->id_status."'>".$d->status_pesan."</option>";
+            }
+            ?></select>
+      <br>
       <input type="submit" name="simpan" value="Simpan" class="btn btn-success">
       </form>
     </div>
@@ -115,19 +111,14 @@
 <?php if($this->session->flashdata('pesan')!=null): ?>
      <div class= "alert alert-success"><?= $this->session->flashdata('pesan');?></div>
   <?php endif?>
-<script type="text/javascript">
-    function tm_detail(id_user){
-      $.ajax({
-        type:"user",
-        url:"<?=base_url()?>index.php/user/get_detail/"+id_user,
-        dataType:"json",
-        success:function(data){
-          $("#nama").val(data.nama);
-          $("#username").val(data.username);
-          $("#telepon").val(data.telepon);
-          $("#alamat").val(data.alamat);
-          $("#id_user_lama").val(data.id_user);
+
+<script>
+    function tm_detail(id_jenis_paket){
+      $.getJSON("<?=base_url()?>index.php/jenis_paket/get_detail/"+id_jenis_paket,
+      function(data){
+    $("#id_pakaian").val(data['id_pakaian']);
+    $("#nama_pakaian").val(data['nama_pakaian']);
         }
-      })
+      });
     }
   </script>
