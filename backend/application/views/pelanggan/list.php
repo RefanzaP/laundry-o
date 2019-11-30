@@ -7,7 +7,7 @@
       <div class="table-responsive">
         <table class="table text-center">
             <h4 class="header-title">Data Pelanggan</h4>
-                <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
+            <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
           <thead class="text-uppercase bg-dark">
             <tr class="text-white">
               <th scope="col">No</th>

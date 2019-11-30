@@ -5,7 +5,7 @@
     <div class="col-lg-10 mt-5">
       <div class="table-responsive">
         <table class="table text-center">
-            <h4 class="header-title">List Driver</h4>
+            <h4 class="header-title">Data Driver</h4>
                     <a href="#tambah" data-toggle="modal"><span class="glyphicon glyphicon-plus ">Tambah + </span></a><br>
           <thead class="text-uppercase bg-success">
             <tr class="text-white">
