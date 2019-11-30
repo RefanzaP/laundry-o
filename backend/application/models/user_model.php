@@ -29,10 +29,10 @@ class user_model extends CI_Model
         return $this->db->delete('user');
       }
 
-      public function detail_user($id_user = NULL)
+      public function get_detail_user($id_user = '')
       {
-        $query = $this->db->where('id_user', $id_user)->get('user')->row();
-        return $query;
+        return $this->db->where('id_user', $id_user)->get('user')->row();
+
       }
 
       public function add(){
@@ -58,8 +58,8 @@ class user_model extends CI_Model
           'alamat' => $this->input->post('alamat'),
             );
 
-            return $this->db->where('id_user', $this->input->post('id_user_lama'))
-                            ->update('user', $data);
+            return $this->db->where('id_user', $this->input->post('id_user'))
+                            ->update('user', $dt_up_admin);
     }
     //
     // public function update_dengan_foto($file_cover)

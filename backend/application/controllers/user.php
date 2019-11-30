@@ -63,27 +63,28 @@ class user extends CI_Controller {
       $this->form_validation->set_rules('telepon', 'telepon', 'trim|required');
       $this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
 
-      if ($this->form_validation->run() == FALSE ){
-        $this->session->set_flashdata('pesan', validation_errors());
+      if ($this->form_validation->run() == TRUE ){
+
+        if ($this->user_model->update() == TRUE ){
+        $this->session->set_flashdata('pesan', 'sukses update');
         redirect(base_url('index.php/user'), 'refresh');
       } else{
-        $this->load->model('user_model');
-        $proses_update=$this->user_model->update();
-        if ($proses_update) {
+
           $this->session->set_flashdata('pesan', 'sukses update');
+            redirect(base_url('index.php/user'), 'refresh');
         }
-        else {
-          $this->session->set_flashdata('pesan', 'gagal update');
+      }else {
+          $this->session->set_flashdata('pesan', validation_errors());
+          redirect(base_url('index.php/user'), 'refresh');
         }
-        redirect(base_url('index.php/user'), 'refresh');
-      }
-    }
+}
 
 
-    public function get_detail($id_user ='')
+
+    public function get_detail_user($id_user ='')
       {
         $this->load->model('user_model');
-        $data_detail=$this->user_model->detail_user($id_user);
+        $data_detail=$this->user_model->get_detail_user($id_user);
         echo json_encode($data_detail);
       }
 
