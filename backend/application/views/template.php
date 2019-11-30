@@ -127,7 +127,9 @@
                                             <a href="<?php echo base_url();?>index.php/cetak_nota" aria-expanded="true"><i class="ti-receipt"></i><span>Cetak Nota</span></a>
                                         </li>
 
-                                <?php } ?>
+                                <?php } else if($this->session->userdata('id_level') == NULL)   {
+                                  redirect(base_url('index.php/login'),'refresh');?>
+                                <?php }?>
                             <!--
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-slice"></i><span>icons</span></a>

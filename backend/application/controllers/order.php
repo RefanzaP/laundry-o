@@ -17,6 +17,8 @@ class order extends CI_Controller
     $data['content_view']="order/list";
     $this->load->model('order_model');
     $data['arr']=$this->order_model->get_order();
+    $this->load->model('order_model');
+    $data['data_status']=$this->order_model->get_status();
     $this->load->view('template', $data, FALSE);
   }
   public function hapus_order($id_transaksi)
