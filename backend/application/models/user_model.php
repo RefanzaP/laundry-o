@@ -16,24 +16,12 @@ class user_model extends CI_Model
     return $arr;
   }
 
-  public function ambil_data($limit,$start){
-
-      return $this->db->limit($limit,$start)
-                      ->get('user')
-                      ->result();
-      }
-
       public function hapus_user($id_user = '')
       {
         $this->db->where('id_user', $id_user);
         return $this->db->delete('user');
       }
 
-      public function get_detail_user($id_user = '')
-      {
-        return $this->db->where('id_user', $id_user)->get('user')->row();
-
-      }
 
       public function add(){
         $data_topik=array(
@@ -48,18 +36,30 @@ class user_model extends CI_Model
       return $ql_masuk;
       }
 
+      public function get_data_user($id_user)
+      {
+        return $this->db->where('id_user', $id_user)
+                        ->get('user')
+                        ->row();
+
+      }
 
       public function update()
       {
-        $dt_up_admin = array(
-          'nama' => $this->input->post('nama'),
-          'username' => $this->input->post('username'),
-          'telepon' => $this->input->post('telepon'),
-          'alamat' => $this->input->post('alamat'),
+        $data = array(
+          'nama'     => $this->input->post('ubah_nama'),
+          'username' => $this->input->post('ubah_username'),
+          'telepon'  => $this->input->post('ubah_telepon'),
+          'alamat'   => $this->input->post('ubah_alamat'),
             );
 
-            return $this->db->where('id_user', $this->input->post('id_user'))
-                            ->update('user', $dt_up_admin);
+            return $this->db->where('id_user', $this->input->post('ubah_id_user'))
+                            ->update('user', $data);
+        if ($this->db->affected_rows() > 0) {
+          return TRUE;
+        } else {
+          return FALSE;
+        }
     }
     //
     // public function update_dengan_foto($file_cover)

@@ -57,14 +57,12 @@ class user extends CI_Controller {
 
     public function update()
     {
-
-      $this->form_validation->set_rules('nama', 'nama', 'trim|required');
-      $this->form_validation->set_rules('username', 'username', 'trim|required');
-      $this->form_validation->set_rules('telepon', 'telepon', 'trim|required');
-      $this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
+      $this->form_validation->set_rules('ubah_nama', 'nama', 'trim|required');
+      $this->form_validation->set_rules('ubah_username', 'username', 'trim|required');
+      $this->form_validation->set_rules('ubah_telepon', 'telepon', 'trim|required|numeric');
+      $this->form_validation->set_rules('ubah_alamat', 'alamat', 'trim|required');
 
       if ($this->form_validation->run() == TRUE ){
-
         if ($this->user_model->update() == TRUE ){
         $this->session->set_flashdata('pesan', 'sukses update');
         redirect(base_url('index.php/user'), 'refresh');
@@ -79,13 +77,10 @@ class user extends CI_Controller {
         }
 }
 
-
-
-    public function get_detail_user($id_user ='')
+    public function get_detail_user($id_user)
       {
-        $this->load->model('user_model');
-        $data_detail=$this->user_model->get_detail_user($id_user);
-        echo json_encode($data_detail);
+        $data = $this->user_model->get_data_user($id_user);
+        echo json_encode($data);
       }
 
     // public function json_topik_post_by_id(){

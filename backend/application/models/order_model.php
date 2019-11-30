@@ -23,6 +23,7 @@ class order_model extends CI_Model
     $this->db->where('id_transaksi', $id_transaksi);
     return $this->db->delete('transaksi');
   }
+
 }
 
 

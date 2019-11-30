@@ -107,7 +107,7 @@
                                         </li>
                                   <li>
                                     <li>
-                                        <a href="<?php echo base_url();?>index.php/driver" aria-expanded="true"><i class="ti-receipt"></i><span>Cetak Nota</span></a>
+                                        <a href="<?php echo base_url();?>index.php/cetak_nota" aria-expanded="true"><i class="ti-receipt"></i><span>Cetak Nota</span></a>
                                     </li>
                                   <?php } else if($this->session->userdata('id_level') == 3) {?>
                                     <li class="">

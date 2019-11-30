@@ -10,7 +10,7 @@
           <thead class="text-uppercase bg-secondary">
             <tr class="text-white">
               <th scope="col">No</th>
-              <th scope="col">Nomor Transaksi</th>
+              <th scope="col">Kode Transaksi</th>
               <th scope="col">Nama Pelanggan</th>
               <th scope="col">Alamat</th>
               <th scope="col">Total</th>
@@ -75,7 +75,7 @@
 
 <script>
     function tm_detail(id_jenis_paket){
-      $.getJSON("<?=base_url()?>index.php/jenis_paket/get_detail/"+id_jenis_paket,
+      $.getJSON("<?=base_url()?>index.php/order/get_detail/"+id_jenis_paket,
       function(data){
     $("#id_pakaian").val(data['id_pakaian']);
     $("#nama_pakaian").val(data['nama_pakaian']);

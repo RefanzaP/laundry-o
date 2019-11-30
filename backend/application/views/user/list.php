@@ -18,17 +18,20 @@
             </tr>
           </thead>
           <tbody>
-            <?php $no=0; foreach($arr as $dt_bar):
-        $no++; ?>
-        <tr>
-          <td><?= $no ?></td>
-          <td><?= $dt_bar->nama ?></td>
-          <td><?= $dt_bar->username ?></td>
-          <td><?= $dt_bar->telepon?></td>
-          <td><?= $dt_bar->alamat?></td>
-          <td> <a href="#update" onclick="tm_detail('.$dt_bar->id_user.')" data-toggle="modal">Ubah</a> | <a href="<?=base_url('index.php/user/hapus_user/'.$dt_bar->id_user)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
-        </tr>
-      <?php endforeach ?>
+            <?php
+      $no=0;
+      foreach ($arr as $dt_bar) {
+          $no++;
+          echo '<tr>
+                  <td>'.$no.'</td>
+                  <td>'.$dt_bar->nama.'</td>
+                  <td>'.$dt_bar->username.'</td>
+                  <td>'.$dt_bar->telepon.'</td>
+                  <td>'.$dt_bar->alamat.'</td>
+                  <td><a href="#" data-toggle="modal" onclick="prepare_ubah_user('.$dt_bar->id_user.')" data-target="#update">Ubah</a> | <a href="'.base_url('index.php/user/hapus_user/'.$dt_bar->id_user).'" onclick="return confirm(\'anda yakin?\')" >Delete</a></td>
+               </tr>';
+      }
+      ?>
           </tbody>
         </table>
       </div>
@@ -92,17 +95,17 @@
       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
     </div>
     <div class="modal-body">
-      <form action="<?=base_url()?>index.php/user/update" method="post" enctype="multipart/form-data" >
-      <input type="hidden" name="id_user" id="id_user" >
+      <form action="<?php echo base_url('index.php/user/update');?>" method="post" enctype="multipart/form-data" >
+      <input type="hidden" name="ubah_id_user" id="ubah_id_user" >
       <br>
       Nama
-      <input id="nama" type="text" name="nama" class="form-control"><br>
+      <input id="ubah_nama" type="text" name="ubah_nama" class="form-control" placeholder="Nama"><br>
       Username
-      <input id="username" type="text" name="username" class="form-control"><br>
+      <input id="ubah_username" type="text" name="ubah_username" class="form-control" placeholder="Username"><br>
       Telepon
-      <input id="telepon" type="number" name="telepon" class="form-control"><br>
+      <input id="ubah_telepon" type="text" name="ubah_telepon" class="form-control" placeholder="Telepon"><br>
       Alamat
-      <input id="alamat" type="text" name="alamat" class="form-control"><br>
+      <input id="ubah_alamat" type="text" name="ubah_alamat" class="form-control" placeholder="Alamat"><br>
     <br>
       <input type="submit" name="simpan" value="Simpan" class="btn btn-success">
       </form>
@@ -114,14 +117,19 @@
 </div>
 </div>
 <script type="text/javascript">
-    function tm_detail(id_user){
-      $.getJSON("<?=base_url()?>index.php/user/get_detail_user/"+id_user,function(data){
-              $("#nama").val(data['nama']);
-              $("#username").val(data['username']);
-              $("#telepon").val(data['telepon']);
-              $("#alamat").val(data['alamat']);
-              $("#id_user").val(data['id_user']);
+    function prepare_ubah_user(id_user){
+        $("#ubah_id_user").empty();
+        $("#ubah_nama").empty();
+        $("#ubah_username").empty();
+        $("#ubah_telepon").empty();
+        $("#ubah_alamat").empty();
+
+        $.getJSON('<?php echo base_url(); ?>index.php/user/get_detail_user/' + id_user, function(data){
+            $("#ubah_id_user").val(data.id_user);
+            $("#ubah_nama").val(data.nama);
+            $("#ubah_username").val(data.username);
+            $("#ubah_telepon").val(data.telepon);
+            $("#ubah_alamat").val(data.alamat);
+        });
         }
-      });
-    }
   </script>
