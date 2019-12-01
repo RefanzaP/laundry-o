@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2019 at 03:45 PM
+-- Generation Time: Dec 01, 2019 at 03:26 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -84,15 +84,15 @@ CREATE TABLE `laundry` (
   `id_laundry` int(11) NOT NULL,
   `nama_laundry` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `alamat` varchar(255) NOT NULL
+  `alamat_laundry` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laundry`
 --
 
-INSERT INTO `laundry` (`id_laundry`, `nama_laundry`, `id_user`, `alamat`) VALUES
-(3, 'Jokdri Style Laundry', 9, '');
+INSERT INTO `laundry` (`id_laundry`, `nama_laundry`, `id_user`, `alamat_laundry`) VALUES
+(3, 'Jokdri Styles Laundry', 9, 'Jl pegangsans');
 
 -- --------------------------------------------------------
 
@@ -153,6 +153,7 @@ CREATE TABLE `pelanggan` (
   `nama_user` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `telepon` bigint(20) NOT NULL,
   `alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -160,8 +161,8 @@ CREATE TABLE `pelanggan` (
 -- Dumping data for table `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `nama_user`, `username`, `password`, `alamat`) VALUES
-(3, 'test', 'test', 'test', 'Jl. Test');
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama_user`, `username`, `password`, `telepon`, `alamat`) VALUES
+(3, 'test', 'test', 'test', 8123123, 'Jl. Test');
 
 -- --------------------------------------------------------
 
@@ -229,7 +230,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `telepon`, `alamat`, `id_level`) VALUES
 (4, 'ojek', 'ojek', 'ojek', 871821, 'Jl.jl', 2),
 (6, 'admin', 'admin', 'admin', 1234567, 'terserah', 1),
-(9, 'Jokdri', 'jokdri', 'jokdri', 8123123, 'Jl. Gejayan', 3);
+(9, 'Jokdri', 'jokdri', 'jokdri', 8123123, 'Jl. Gejayan', 3),
+(11, 'jokodri', 'jokodri', 'jokodri', 8888, 'jokodri', 3);
 
 --
 -- Indexes for dumped tables
@@ -340,7 +342,7 @@ ALTER TABLE `jenis_paket`
 -- AUTO_INCREMENT for table `laundry`
 --
 ALTER TABLE `laundry`
-  MODIFY `id_laundry` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_laundry` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `level`
@@ -382,7 +384,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
