@@ -15,8 +15,8 @@ class order_model extends CI_Model
   }
 
   public function get_status(){
-    $arr= $this->db->get('status')->result();
-    return $arr;
+    $query = $this->db->get('status')->result();
+    return $query;
   }
 
   public function hapus_order($id_transaksi = '')

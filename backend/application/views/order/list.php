@@ -55,13 +55,13 @@
       <form action="<?php echo base_url() ?>index.php/order/update" method="post" >
       <input type="hidden" name="ubah_id_transaksi" id="ubah_id_transaksi" >
       <br>
-      Pilih Status <br>
-          <select name="ubah_id_status" id="ubah_id_status" class="form-control" >
+      Status Pesan
+      <select name="ubah_id_status" class="form-control">
             <?php
             foreach($data_status as $d) {
               echo "<option value='".$d->id_status."'>".$d->status_pesan."</option>";
             }
-            ?></select>
+            ?>
       <br>
       <input type="submit" name="simpan" value="Simpan" class="btn btn-success">
       </form>
