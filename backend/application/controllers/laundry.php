@@ -32,6 +32,7 @@ class laundry extends CI_Controller
 
   public function add(){
     $this->form_validation->set_rules('nama_laundry', 'Nama Laundry', 'trim|required');
+    $this->form_validation->set_rules('alamat_laundry', 'Alamat Laundry', 'trim|required');
     $this->form_validation->set_rules('id_user', 'Owner', 'trim|required');
 
       if ($this->form_validation->run() == TRUE )
@@ -51,9 +52,30 @@ class laundry extends CI_Controller
       }
   }
 
-  public function get_detail(){
-    
+  public function get_detail_laundry($id_laundry){
+    $data = $this->laundry_model->get_data_laundry($id_laundry);
+    echo json_encode($data);
   }
+
+  public function update()
+  {
+    $this->form_validation->set_rules('ubah_nama_laundry', 'Nama Laundry', 'trim|required');
+    $this->form_validation->set_rules('ubah_alamat_laundry', 'Alamat Laundry', 'trim|required');
+    if ($this->form_validation->run() == TRUE ){
+      if ($this->laundry_model->update() == TRUE ){
+      $this->session->set_flashdata('pesan', 'sukses update');
+      redirect(base_url('index.php/laundry'), 'refresh');
+    } else{
+
+        $this->session->set_flashdata('pesan', 'sukses update');
+          redirect(base_url('index.php/laundry'), 'refresh');
+      }
+    }else {
+        $this->session->set_flashdata('pesan', validation_errors());
+        redirect(base_url('index.php/laundry'), 'refresh');
+      }
+}
+
 
 }
 

@@ -17,17 +17,19 @@
             </tr>
           </thead>
           <tbody>
-            <?php $no=0; foreach($arr as $dt_bar):
-        $no++; ?>
-        <tr>
-          <td><?= $no ?></td>
-          <td><?= $dt_bar->nama_laundry ?></td>
-          <td><?= $dt_bar->nama ?></td>
-          <td><?= $dt_bar->alamat?></td>
-          <td> <a href="#update" onclick="tm_detail('<?= $dt_bar->id_laundry ?>')" data-toggle="modal">Ubah</a> |
-             <a href="<?=base_url('index.php/laundry/hapus_laundry/'.$dt_bar->id_laundry)?>" onclick="return confirm('Apakah Anda Yakin?')">Hapus</a></td>
-        </tr>
-      <?php endforeach ?>
+            <?php
+      $no=0;
+      foreach ($arr as $dt_bar) {
+          $no++;
+          echo '<tr>
+                  <td>'.$no.'</td>
+                  <td>'.$dt_bar->nama_laundry.'</td>
+                  <td>'.$dt_bar->nama.'</td>
+                  <td>'.$dt_bar->alamat_laundry.'</td>
+                  <td><a href="#" data-toggle="modal" onclick="prepare_ubah_laundry('.$dt_bar->id_laundry.')" data-target="#update">Ubah</a> | <a href="'.base_url('index.php/laundry/hapus_laundry/'.$dt_bar->id_laundry).'" onclick="return confirm(\'anda yakin?\')" >Hapus</a></td>
+               </tr>';
+      }
+      ?>
           </tbody>
         </table>
       </div>
@@ -49,6 +51,8 @@
           <input type="hidden" name="id_laundry" ><br>
           Nama Laundry
           <input id="nama_laundry" type="text" name="nama_laundry" class="form-control" placeholder="Nama Laundry"><br>
+          Alamat
+          <input id="alamat_laundry" type="text" name="alamat_laundry" class="form-control" placeholder="Alamat"><br>
           Pilih Pemilik
           <select name="id_user" class="form-control">
               <?php
@@ -84,10 +88,12 @@
     </div>
     <div class="modal-body">
       <form action="<?php echo base_url() ?>index.php/laundry/update" method="post" >
-      <input type="hidden" name="id_laundry" id="id_laundry" >
+      <input type="hidden" name="ubah_id_laundry" id="ubah_id_laundry" >
       <br>
       Nama Laundry
-      <input id="nama_laundry" type="text" name="nama_laundry" class="form-control"  placeholder="Nama Laundry"><br><br>
+      <input id="ubah_nama_laundry" type="text" name="ubah_nama_laundry" class="form-control"  placeholder="Nama Laundry"><br><br>
+      Alamat Laundry
+      <input id="ubah_alamat_laundry" type="text" name="ubah_alamat_laundry" class="form-control"  placeholder="Alamat Laundry"><br><br>
       <input type="submit" name="simpan" value="Simpan" class="btn btn-success">
       </form>
     </div>
@@ -98,12 +104,15 @@
 </div>
 </div>
 <script>
-    function tm_detail(id_user){
-      $.getJSON("<?=base_url()?>index.php/laundry/get_detail/"+id_laundry,
-  function(data){
-    $("#id_laundry").val(data['id_laundry']);
-    $("#nama_laundry").val(data['nama_laundry']);
-        }
-      });
+function prepare_ubah_laundry(id_laundry){
+    $("#ubah_id_laundry").empty();
+    $("#ubah_nama_laundry").empty();
+    $("#ubah_alamat_laundry").empty();
+
+    $.getJSON('<?php echo base_url(); ?>index.php/laundry/get_detail_laundry/' + id_laundry, function(data){
+        $("#ubah_id_laundry").val(data.id_laundry);
+        $("#ubah_nama_laundry").val(data.nama_laundry);
+        $("#ubah_alamat_laundry").val(data.alamat_laundry);
+    });
     }
   </script>
