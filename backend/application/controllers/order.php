@@ -27,6 +27,29 @@ class order extends CI_Controller
   $this->order_model->hapus_order($id_transaksi);
   redirect(base_url('index.php/order'), 'refresh');
 }
+
+  public function update(){
+    $this->form_validation->set_rules('ubah_id_status', 'Status', 'trim|required');
+    if ($this->form_validation->run() == TRUE ){
+      if ($this->order_model->update() == TRUE ){
+      $this->session->set_flashdata('pesan', 'sukses update');
+      redirect(base_url('index.php/order'), 'refresh');
+    } else{
+
+        $this->session->set_flashdata('pesan', 'sukses update');
+          redirect(base_url('index.php/order'), 'refresh');
+      }
+    }else {
+        $this->session->set_flashdata('pesan', validation_errors());
+        redirect(base_url('index.php/order'), 'refresh');
+      }
+  }
+
+  public function get_detail_order($id_transaksi){
+    $data = $this->order_model->get_data_order($id_transaksi);
+    echo json_encode($data);
+  }
+
 }
 
 
